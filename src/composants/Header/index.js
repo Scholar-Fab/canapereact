@@ -9,19 +9,19 @@ import '../../assets/css/style.css';
 export function Header() {
   return (
     <header>
-    <div class="limitedWidthBlockContainer informations">
-      <div class="limitedWidthBlock">
+    <div className="limitedWidthBlockContainer informations">
+      <div className="limitedWidthBlock">
         <ul>
-          <li><img src={iconePhone} alt="logo de téléphone" class="informations__phone"/>01 23 45 67 89</li>
-          <li><img src={iconeMail} alt="logo d'une enveloppe" class="informations__mail"/>support@name.com</li>
-          <li><img src={iconeAdresse} alt="logo d'un point de géolocalisation" class="informations__address"/>01 23 45 67 89</li>
+          <li><img src={iconePhone} alt="logo de téléphone" className="informations__phone"/>01 23 45 67 89</li>
+          <li><img src={iconeMail} alt="logo d'une enveloppe" className="informations__mail"/>support@name.com</li>
+          <li><img src={iconeAdresse} alt="logo d'un point de géolocalisation" className="informations__address"/>01 23 45 67 89</li>
         </ul>
       </div>
     </div>
-    <div class="limitedWidthBlockContainer menu">
-      <div class="limitedWidthBlock">
+    <div className="limitedWidthBlockContainer menu">
+      <div className="limitedWidthBlock">
         <a href="./index.html">
-          <img class="logo" src={logo} alt="Logo de l'entreprise"/>
+          <img className="logo" src={logo} alt="Logo de l'entreprise"/>
         </a>
         <nav>
           <ul>
@@ -31,7 +31,7 @@ export function Header() {
         </nav>
       </div>
     </div>
-    <img class="banniere" src={banniere} alt="Baniere"/>
+    <img className="banniere" src={banniere} alt="Baniere"/>
   </header>
   );
 };

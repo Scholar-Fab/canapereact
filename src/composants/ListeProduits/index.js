@@ -1,7 +1,5 @@
 import * as React from 'react';
-import imgCanape from "../../assets/images/kanap01.jpeg";
-
-const pathCanape = "../../assets/images/";  
+import Canape from '../Canape';
 
 function ListeProduits() {
     const [listeProduits, setListeProduits] = React.useState([]);
@@ -12,10 +10,12 @@ function ListeProduits() {
             if (response.ok) {
                 return response.json();
             }
-            throw new Error("Problème avec la requête");
+            else{
+                console.log("Erreur ");
+            }
         })
         .then(data => {
-            console.log("Données : " + data)
+            setListeProduits(data);
         })
     }
 
@@ -25,20 +25,16 @@ function ListeProduits() {
 
 
   return (
-    <main class="limitedWidthBlockContainer">
-    <div class="limitedWidthBlock">
-      <div class="titles">
+    <main className="limitedWidthBlockContainer">
+    <div className="limitedWidthBlock">
+      <div className="titles">
         <h1>Nos produits</h1>
         <h2>Une gamme d'articles exclusifs</h2>
       </div>
-      <section class="items" id="items"> 
-         <a href="product.html?id=42">
-          <article>
-            <img src={imgCanape} alt="Lorem ipsum dolor sit amet, Kanap name1"/>
-            <h3 class="productName">Kanap name1</h3>
-            <p class="productDescription">Dis enim malesuada risus sapien gravida nulla nisl arcu. Dis enim malesuada risus sapien gravida nulla nisl arcu.</p>
-          </article>
-        </a>
+      <section className="items" id="items"> 
+         {listeProduits.map((produit) => (
+            <Canape key={produit.id} produit={produit} />
+         ))}
       </section>
     </div>
   </main>
