@@ -33,7 +33,7 @@ function ListeProduits() {
       </div>
       <section className="items" id="items"> 
          {listeProduits.map((produit) => (
-            <Canape key={produit.id} produit={produit} />
+            <Canape key={produit._id} produit={produit} />
          ))}
       </section>
     </div>
