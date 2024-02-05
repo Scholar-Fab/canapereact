@@ -1,13 +1,16 @@
 import * as React from 'react';
 import './css/product.css';
 import { useParams } from 'react-router-dom';
+import { PanierContext } from '../../contexte/PanierContexte';
 
 function InfoProduit() {
     const { id } = useParams();
     const [canape, setCanape] = React.useState();
+    const [quantite, setQuantite] = React.useState(0);
+    const {panier, setPanier} = React.useContext(PanierContext);
 
     const recupProduit = () => {
-        fetch("http://192.168.40.42:8000/api/produits")
+        fetch("http://127.0.0.1:8000/api/produits")
         .then(response => {
             if (response.ok) {
                 return response.json();
@@ -25,6 +28,23 @@ function InfoProduit() {
     React.useEffect(() => {
         recupProduit();
     },[]);
+
+    function handleAddToCart(event) {
+      event.preventDefault();
+      const canapePanier = canape;
+      const canapeQuantite = document.getElementById("quantity").value;
+      const canapeCouleur = document.getElementById("colors").value;
+      // console.log("Canape : " + JSON.stringify(canapePanier));
+      // console.log("Quantite : "+ canapeQuantite);
+      // console.log("Couleur : " + canapeCouleur);
+      const ajoutPanier = {
+        "canape" : canapePanier,
+        "quantite" : canapeQuantite,
+        "couleur" : canapeCouleur
+      }
+      // console.log("Ajout canape" + JSON.stringify(ajoutPanier));
+      setPanier([...panier, ajoutPanier]);
+    }
 
 
   return (
@@ -53,19 +73,20 @@ function InfoProduit() {
                 <label for="color-select">Choisir une couleur :</label>
                 <select name="color-select" id="colors">
                     <option value="">--SVP, choisissez une couleur --</option>
-                     <option value="vert">vert</option>
-                    <option value="blanc">blanc</option>
+                    {canape?.colors.map((color) => {
+                        return <option key={color} value={color}>{color}</option>
+                    })}
                 </select>
               </div>
 
               <div className="item__content__settings__quantity">
                 <label for="itemQuantity">Nombre d'article(s) (1-100) :</label>
-                <input type="number" name="itemQuantity" min="1" max="100" value="0" id="quantity"/>
+                <input type="number" name="itemQuantity" min="1" max="100" value={quantite} id="quantity" onChange={(e) => setQuantite(e.target.value)}/>
               </div>
             </div>
 
             <div className="item__content__addButton">
-              <button id="addToCart">Ajouter au panier</button>
+              <button id="addToCart" onClick={(e) => handleAddToCart(e)}>Ajouter au panier</button>
             </div>
 
           </div>

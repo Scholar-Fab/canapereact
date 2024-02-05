@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './composants/App';
 import reportWebVitals from './reportWebVitals';
+import { PanierContexteProvider } from './contexte/PanierContexte';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+  <PanierContexteProvider>
     <App />
+  </PanierContexteProvider>
   </React.StrictMode>
 );
 

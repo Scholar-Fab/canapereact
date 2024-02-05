@@ -5,6 +5,7 @@ import iconePhone from './images/icons/phone.svg';
 import banniere from './images/banniere.png';
 import logo from './images/logo.png';
 import '../../assets/css/style.css';
+import { Link } from 'react-router-dom';
 
 export function Header() {
   return (
@@ -25,8 +26,8 @@ export function Header() {
         </a>
         <nav>
           <ul>
-            <a href="index.html"><li>Accueil</li></a>
-            <a href="cart.html"><li>Panier</li></a>
+            <Link to="/"><li>Accueil</li></Link>
+            <Link to="/panier"><li>Panier</li></Link>
           </ul>
         </nav>
       </div>

@@ -5,7 +5,7 @@ function ListeProduits() {
     const [listeProduits, setListeProduits] = React.useState([]);
 
     const recupProduits = () => {
-        fetch("http://192.168.40.42:8000/api/produits")
+        fetch("http://127.0.0.1:8000/api/produits")
         .then(response => {
             if (response.ok) {
                 return response.json();
